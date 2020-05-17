@@ -11,4 +11,4 @@ I was just testing leaflet maps and suddenly an idea came up out of random to cr
 
 ### Contribute 
 
-Please contribute so that i can make this project more awesome.! 
+Please contribute so that i can make this project more awesome.

@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corona Map</title>
+    <title>Corona Map - Corona Details</title>
 
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      </head>
+      <body>
+            
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" crossorigin=""/>
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
      <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" crossorigin=""></script>
     <style>
-        #mapid { max-height: 100%; }
+       * {
+	margin:0;
+	padding:0;
+	border:0;
+
+}
+        #mapid { min-height: 960px;max-height: 1200px; overflow: hidden;}
         .info {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -29,7 +46,14 @@
 
 </head>
 <body>
+
+
+    <div style="width: 1200px; margin: 0 auto; overflow: hidden;">
+
     <div id="mapid"></div>
+
+</div>
+
     <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -98,9 +122,9 @@ function onEachFeature(feature, layer) {
 
     let data = await $.getJSON(url);
     console.log('d',data);
-    var mymap = L.map('mapid').setView([33.637061, 72.950797], 2);
+    var mymap = L.map('mapid').setView([33.637061, 72.950797], 2.5);
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=sk.eyJ1IjoibW9laWRzYWxlZW0iLCJhIjoiY2thYTcyNWFkMHR4aTMwbWtlZTNpc3ZneSJ9.3nBCSMg-AqnLpJ77VUtTEw', {
-    attribution: 'Moeid Saleem data &copy; <a href="https://www.atroxdog.org/">fuck</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    attribution: 'Moeid Saleem data &copy; <a href="https://www.atroxdog.org/">fuck</a> coronavirus, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     id: 'mapbox/dark-v9',
     tileSize: 512,
     zoomOffset: -1
@@ -116,11 +140,10 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
     this._div.innerHTML = '<h4>World Corona Density</h4>' +  (props ?
-        '<b>' + props.title 
-            + '</b><br />' + props.total_cases + ' Total Cases / mi<sup>2</sup>'
-            + '</b><br />' + props.total_deaths + ' Total Deaths / mi<sup>2</sup>'
-            + '</b><br />' + props.total_recovered + ' Total recovered / mi<sup>2</sup>'
-            
+        '<h5><b>' + props.title + '</b></h5>'
+            + '<br /> <b>' + props.total_cases + '</b> Total Cases / mi<sup>2</sup>'
+            + '<span style="color:red"></b><br />' + props.total_deaths + ' Total Deaths / mi<sup>2</sup> </span>'
+            + '<span style="color:green"></b><br />' + props.total_recovered + ' Total recovered / mi<sup>2</sup></span>'
             : 'Hover over a state');
 };
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 80;
 var GeoJSON = require('geojson');
 const _ = require('lodash')
 const bodyParser = require('body-parser');
