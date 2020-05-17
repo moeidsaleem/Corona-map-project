@@ -28,7 +28,7 @@ const COUNTRY_TIMELINE_URI = CORONA_API_URL + 'countryTimeline=US';
 
 app.get('/pkdata', (req,res)=>{
 
-    fs.readFile(__dirname + '/countries.geo.json', 'utf8', function (err, data) {
+    fs.readFile(__dirname + '/pk.geojson', 'utf8', function (err, data) {
         if (err) throw err;
         data = JSON.parse(data);
         res.json(data);
