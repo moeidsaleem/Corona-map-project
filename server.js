@@ -26,8 +26,20 @@ const COUNTRY_TIMELINE_URI = CORONA_API_URL + 'countryTimeline=US';
 
 /* FETCH DATA FROM API AND RETURN */
 
+app.get('/pkdata', (req,res)=>{
 
-app.get('/pkdata',async (req,res)=>{
+    fs.readFile(__dirname + '/countries.geo.json', 'utf8', function (err, data) {
+        if (err) throw err;
+        data = JSON.parse(data);
+        res.json(data);
+
+    });
+
+})
+
+
+
+app.get('/coronaData',async (req,res)=>{
     let c = await axios.get("https://api.thevirustracker.com/free-api?countryTotals=ALL");
     let cx = c.data.countryitems[0];
     let countryData = Object.values(cx);
